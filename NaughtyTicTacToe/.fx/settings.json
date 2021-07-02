@@ -1,0 +1,23 @@
+{
+    "appName": "NaughtyTicTacToe",
+    "projectId": "ade9843d-018d-429e-aaaf-02c453f04e68",
+    "currentEnv": "default",
+    "solutionSettings": {
+        "name": "fx-solution-azure",
+        "version": "1.0.0",
+        "hostType": "Azure",
+        "capabilities": [
+            "Tab"
+        ],
+        "azureResources": [
+            "function"
+        ],
+        "activeResourcePlugins": [
+            "fx-resource-local-debug",
+            "fx-resource-frontend-hosting",
+            "fx-resource-function",
+            "fx-resource-aad-app-for-teams",
+            "fx-resource-simple-auth"
+        ]
+    }
+}
