@@ -99,7 +99,7 @@ module.exports = async function (context, req, teamsfxContext) {
   // Create a graph client to access user's Microsoft 365 data after user has consented.
   try {
     const graphClient = teamsfx.createMicrosoftGraphClient(credential, [".default"]);
-    const profile = await graphClient.api("/me").get();
+    const profile = await graphClient.api("/me/contacts").get();
     res.body.graphClientMessage = profile;
   } catch (e) {
     context.log.error(e);
