@@ -1,0 +1,30 @@
+{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:50086",
+      "sslPort": 44357
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "https://teams.microsoft.com/_#/l/app/8e248b3b-446d-48a0-a25c-9429cd68bc64?installAppPackage=true",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "TicTacTest": {
+      "commandName": "Project",
+      "dotnetRunMessages": "true",
+      "launchBrowser": true,
+      "launchUrl": "https://teams.microsoft.com/_#/l/app/8e248b3b-446d-48a0-a25c-9429cd68bc64?installAppPackage=true",
+      "applicationUrl": "https://localhost:44357;http://localhost:50086",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

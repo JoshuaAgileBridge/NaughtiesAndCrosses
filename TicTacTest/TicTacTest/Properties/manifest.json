@@ -1,0 +1,58 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.9/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.9",
+  "version": "1.0.0",
+  "id": "8e248b3b-446d-48a0-a25c-9429cd68bc64",
+  "packageName": "com.company.example",
+  "developer": {
+    "name": "Naughties and crosses",
+    "websiteUrl": "https://localhost:44357",
+    "privacyUrl": "https://localhost:44357/privacy",
+    "termsOfUseUrl": "https://localhost:44357/termsofuse"
+  },
+  "icons": {
+    "color": "../color.png",
+    "outline": "../outline.png"
+  },
+  "name": {
+    "short": "Naughty TTT",
+    "full": "Naughty TTT"
+  },
+  "description": {
+    "short": "Short description for Naughty TTT.",
+    "full": "Full description of Naughty TTT."
+  },
+  "webApplicationInfo": {
+    "id": "167cd9fb-2554-4c20-9671-3bdcf7e5cb57",
+    "resource": "api://localhost/167cd9fb-2554-4c20-9671-3bdcf7e5cb57"
+  },
+  "accentColor": "#FFFFFF",
+  "permissions": [
+    "identity",
+    "messageTeamMembers"
+  ],
+  "validDomains": [
+    "localhost"
+  ],
+  "configurableTabs": [
+    {
+      "configurationUrl": "https://localhost:44357/config",
+      "canUpdateConfiguration": true,
+      "scopes": [
+        "team",
+        "groupchat"
+      ]
+    }
+  ],
+  "staticTabs": [
+    {
+      "entityId": "index",
+      "name": "Personal Tab",
+      "contentUrl": "https://localhost:44357/tab",
+      "websiteUrl": "https://localhost:44357/tab",
+      "scopes": [
+        "personal"
+      ]
+    }
+  ]
+}
