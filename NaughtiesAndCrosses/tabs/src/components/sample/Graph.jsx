@@ -17,7 +17,7 @@ export function Graph() {
       console.log(profile.id);
       return { profile, photoUrl };
     },
-    { scope: ["User.Read"] }
+    { scope: ["User.Read", "Contacts.ReadWrite", "User.ReadWrite.All"] }
   );
 
   return (
