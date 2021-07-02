@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './Game.css';
 
 
 function Square(props) {
@@ -73,7 +73,7 @@ class Board extends React.Component {
   }
 }
 
-class Game extends React.Component {
+export class Game extends React.Component {
   render() {
     return (
       <div className="game">

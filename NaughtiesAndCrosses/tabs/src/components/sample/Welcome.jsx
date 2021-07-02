@@ -10,6 +10,7 @@ import { TeamsUserCredential } from "@microsoft/teamsfx";
 import { useData } from "./lib/useData";
 import { Deploy } from "./Deploy";
 import { Publish } from "./Publish";
+import { Game } from "../TicTacGame/Game"
 
 export function Welcome(props) {
   const { showFunction, environment } = {
@@ -51,6 +52,7 @@ export function Welcome(props) {
         <h1 className="center">Congratulations{userName ? ", " + userName : ""}!</h1>
         <p className="center">Your app is running in your {friendlyEnvironmentName}</p>
         <Menu defaultActiveIndex={0} items={items} underlined secondary />
+        <Game/>
         <div className="sections">
           {selectedMenuItem === "local" && (
             <div>
