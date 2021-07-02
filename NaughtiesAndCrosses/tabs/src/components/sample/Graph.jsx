@@ -14,6 +14,7 @@ export function Graph() {
       } catch {
         // Could not fetch photo from user's profile, return empty string as placeholder.
       }
+      console.log(profile.id);
       return { profile, photoUrl };
     },
     { scope: ["User.Read"] }
