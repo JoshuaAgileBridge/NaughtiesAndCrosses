@@ -19,7 +19,8 @@ body {
   
   .square {
     background: #fff;
-    border: 1px solid #999;
+    border: 1px solid #FF748C;
+    color:#FF748C;
     float: left;
     font-size: 24px;
     font-weight: bold;
@@ -35,6 +36,11 @@ body {
   .square:focus {
     outline: none;
   }
+
+  .square:hover {
+    background: #ffc0cb;
+  }
+  
   
   .kbd-navigation .square:focus {
     background: #ddd;
