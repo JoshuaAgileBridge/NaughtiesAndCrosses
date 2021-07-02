@@ -1,0 +1,23 @@
+{
+    "appName": "NaughtiesAndCrosses",
+    "projectId": "20f1eceb-09d8-4bdc-a69c-ba90eb009f0f",
+    "currentEnv": "default",
+    "solutionSettings": {
+        "name": "fx-solution-azure",
+        "version": "1.0.0",
+        "hostType": "Azure",
+        "capabilities": [
+            "Tab"
+        ],
+        "azureResources": [
+            "function"
+        ],
+        "activeResourcePlugins": [
+            "fx-resource-local-debug",
+            "fx-resource-frontend-hosting",
+            "fx-resource-function",
+            "fx-resource-aad-app-for-teams",
+            "fx-resource-simple-auth"
+        ]
+    }
+}
