@@ -23,14 +23,14 @@ export async function getUserInfo() {
 
 export async function getToken() {
     var credential = new TeamsUserCredential();
-    var scope = ["User.Read"];
+    var scope = ["User.Read, Contacts.ReadWrite"];
     var token = credential.getToken(scope);
     return token;
 }
 
 export async function popupLoginPage() {
     var credential = new TeamsUserCredential();
-    var scope = ["User.Read"];
+    var scope = ["User.Read, Contacts.ReadWrite"];
     await credential.login(scope);
     return;
 }

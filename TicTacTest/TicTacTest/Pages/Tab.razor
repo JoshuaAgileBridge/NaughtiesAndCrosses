@@ -10,20 +10,25 @@
     <div class="narrow page-padding">
         <img src="hello.png" />
         <h1 class="center">
-            Congratulations@(!String.IsNullOrEmpty(UserName) ? ", " + UserName : "")!
+            Hi@(!String.IsNullOrEmpty(UserName) ? ", " + UserName : "")!
         </h1>
 
         <div class="sections">
             @if (!IsLoading)
             {
-                <h2>Get the user's profile photo</h2>
+
+                <h2>Tic Tac Toe game</h2>
+                <hr />
+                <Board />
+
+                @*<h2>Get the user's profile photo</h2>
                 <p>
                     Click below to authorize this app to read your profile photo using
                     Microsoft Graph.
                 </p>
-                <FluentButton Appearance="Appearance.Accent" @onclick="GetUserProfilePhoto">Authorize</FluentButton>
+                <FluentButton Appearance="Appearance.Accent" @onclick="GetUserProfilePhoto">Authorize</FluentButton>*@
 
-                @if (!String.IsNullOrEmpty(UserPhotoUri))
+                @*@if (!String.IsNullOrEmpty(UserPhotoUri))
                 {
                     <div class="profile">
                         <img class="avatar" src="@UserPhotoUri" />
@@ -33,11 +38,7 @@
                             <p>@Email</p>
                         </div>
                     </div>
-
-                    <h2>Tic Tac Toe game</h2>
-                    <hr />
-                    <Board />
-                }
+                }*@
             }
             else if (IsLoading)
             {
@@ -88,6 +89,7 @@
             var graphClient = teamsfx.GetGraphServiceClient();
             var photoStream = await graphClient.Me.Photo.Content.Request().GetAsync();
             var profile = await graphClient.Me.Request().GetAsync();
+            //var contacts = await graphClient.Me.Contacts.Request().GetAsync();
 
             if (photoStream != null)
             {
@@ -103,6 +105,10 @@
 
             Title = profile.JobTitle;
             Email = profile.Mail;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"Error: {e.Message}");
         }
         finally
         {

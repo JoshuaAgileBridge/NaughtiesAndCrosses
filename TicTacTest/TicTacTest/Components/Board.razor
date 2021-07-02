@@ -1,16 +1,130 @@
 ﻿@*Components/Board.razor*@
 
+@{
+    var gameStatus = Helper.CalculateGameStatus(values);
+    string status;
+    if (gameStatus == GameStatus.X_wins)
+    {
+        status = "Winner: X";
+    }
+    else if (gameStatus == GameStatus.O_wins)
+    {
+        status = "Winner: O";
+    }
+    else if (gameStatus == GameStatus.Draw)
+    {
+        status = "Draw !";
+    }
+    else
+    {
+        char nextPlayer = xIsNext ? 'X' : 'O';
+        status = $"Next player: {nextPlayer}";
+    }
+    <h3>@status</h3>
+}
 <div class="board">
-    <Square />
-    <Square />
-    <Square />
-    <Square />
-    <Square />
-    <Square />
-    <Square />
-    <Square />
-    <Square />
+    @for (int i = 0; i < 9; i++)
+    {
+        int squareNumber = i;
+        <Square @key=squareNumber
+                value=values[squareNumber]
+                ClickHandler="@(() => HandleClick(squareNumber))" />
+    }
 </div>
+
+@if (robotIsPlaying)
+{
+    <div>
+        Robot is thinking...
+    </div>
+}
+
+@code {
+    private static readonly Random random = new Random();
+    private static readonly object syncLock = new object();
+    private bool robotIsPlaying = false;
+    private bool xIsNext;
+    private char[] values = new char[9];
+    protected override void OnInitialized()
+    {
+        InitState();
+    }
+
+    private void PlayAgainHandler()
+    {
+        InitState();
+    }
+    private void InitState()
+    {
+        values = new char[9]
+        {
+    ' ', ' ', ' ',
+    ' ', ' ', ' ',
+    ' ', ' ', ' '
+                };
+        xIsNext = true;
+    }
+
+    private void HandleClick(int i)
+    {
+        if (values[i] != ' ')
+        {
+            return;
+        }
+        bool isGameFiniched = Helper.CalculateGameStatus(values) != GameStatus.NotYetFiniched;
+        if (isGameFiniched)
+        {
+            robotIsPlaying = false;
+            return;
+        }
+        bool xToPlay = xIsNext;
+        values[i] = xToPlay ? 'X' : 'O';
+        xIsNext = !xToPlay;
+
+        // Is it the robot's turn?
+        if (!xIsNext)
+        {
+            robotIsPlaying = true;
+            List<int> openSlots = new List<int>();
+
+            for (int x = 0; x < values.Length; x++)
+            {
+                if (values[x] == ' ') openSlots.Add(x);
+            }
+
+            if (openSlots.Count == 0)
+            {
+                return;
+            }
+            int slot = RandomNumber(0, openSlots.Count);  // Create a random number according to open slots
+
+            this.RobotPlay(openSlots[slot]);
+        } else
+        {
+            robotIsPlaying = false;
+        }
+    }
+
+    public static int RandomNumber(int min, int max)
+    {
+        lock (syncLock)
+        { // synchronize
+            return random.Next(min, max);
+        }
+    }
+
+    private void RobotPlay(int value)
+    {
+        Task.Run(async () =>
+        {
+            await Task.Delay(1000);
+            this.HandleClick(value);
+            await this.InvokeAsync(StateHasChanged);
+        });
+    }
+}
+
+<FluentButton Appearance="Appearance.Accent" @onclick="PlayAgainHandler">New game</FluentButton>
 
 <style scoped>
     .board {
@@ -21,5 +135,10 @@
         width: 200px;
         height: 200px;
         border-radius: 10%;
+    }
+
+    button {
+        border-radius: 10%;
+        margin: 10px;
     }
 </style>
